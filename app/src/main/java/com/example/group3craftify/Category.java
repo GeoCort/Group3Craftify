@@ -1,47 +1,32 @@
 package com.example.group3craftify;
 
-import android.view.View;
-import android.view.ViewGroup;
+// get craft list from data base using setter method initializes a craft using name method
+public class Category {
+    String name;
+    Craft crafts[];
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
-public class Category extends RecyclerView.Adapter<Category.ViewHolder>{
-    private ArrayList<String>categoryList = new ArrayList<>();
-
-    public Category() {
-
+    /**
+     * instantiates a craft
+     * @param name
+     *
+     */
+    public Category(String name) {
+        this.name = name;
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public int getItemCount() {
-        return categoryList.size();
+    public Craft[] getCrafts() {
+        return crafts;
     }
 
-    public ArrayList<String> getCategoryList() {
-        return categoryList;
-    }
-
-    public void setCategoryList(ArrayList<String> categoryList) {
-        this.categoryList = categoryList;
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
+    public void setCrafts(Craft[] crafts) {
+        this.crafts = crafts;
     }
 }
