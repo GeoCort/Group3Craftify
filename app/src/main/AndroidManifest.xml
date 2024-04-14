@@ -13,16 +13,25 @@
         android:theme="@style/Theme.Group3Craftify"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
             android:name=".categoriesActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <!-- No intent-filter for MAIN and LAUNCHER here -->
         </activity>
     </application>
 
