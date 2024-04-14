@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    Button butto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,14 +23,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 //        Test code below here
-        butto = findViewById(R.id.button);
-        butto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,categoriesActivity.class);
-            startActivity(intent);
 
-            }
-        });
     }
 }
