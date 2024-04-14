@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "456597673994",
+    "project_id": "group3craftify",
+    "storage_bucket": "group3craftify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456597673994:android:ac638b634a111f50a6e7f3",
+        "android_client_info": {
+          "package_name": "com.example.group3craftify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA20DUMmb2pNi8xCoaWbYeMOYh6297GYQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
