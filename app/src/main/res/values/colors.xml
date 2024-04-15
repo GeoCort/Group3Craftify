@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Gold">#D4AF37</color>
     <color name="upperTabColor">#F6E88F</color>
+    <color name="offWhite">#F4F4F4</color>
+    <color name="CraftCardBackground">#4E4D59</color>
 </resources>
