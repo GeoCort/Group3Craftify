@@ -25,7 +25,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     FirebaseDatabase db;
     FirebaseAuth dbAuth;
-
+    // test
+    Button toCategories;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,15 @@ public class MainActivity extends AppCompatActivity {
         myRef.setValue(categoryListDB);
 
         dbAuth = FirebaseAuth.getInstance();
-
+        // test
+        toCategories = findViewById(R.id.button);
+        toCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ViewCraftsRecyclerPage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     protected void onStart()

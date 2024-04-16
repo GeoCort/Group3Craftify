@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".ViewCraftsRecyclerPage">
+
+  <RelativeLayout
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content">
+      <TextView
+          android:id="@+id/craftsFromCategory"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/Gold"
+          android:padding="15dp"
+          android:text="Category Name"
+          android:textSize="24sp"
+          android:textStyle="bold" />
+        <ImageButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/baseline_add_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            />
+  </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/categoryToCrafts"
+      />
+
+
+</LinearLayout>
