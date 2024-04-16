@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseDatabase db;
+    FirebaseAuth dbAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +54,14 @@ public class MainActivity extends AppCompatActivity {
         categoryListDB.add(new Category("Politics and Current Events"));
         myRef.setValue(categoryListDB);
 
-
-
+        dbAuth = FirebaseAuth.getInstance();
 
     }
+
+    protected void onStart()
+    {
+        super.onStart();
+        FirebaseUser user = dbAuth.getCurrentUser();
+    }
+
 }
