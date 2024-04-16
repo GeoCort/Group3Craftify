@@ -1,9 +1,13 @@
 package com.example.group3craftify;
 
+import org.checkerframework.checker.units.qual.C;
+
+import java.util.ArrayList;
+
 // get craft list from data base using setter method initializes a craft using name method
 public class Category {
     String name;
-    Craft crafts[];
+    ArrayList<Craft> crafts;
 
     /**
      * instantiates a craft
@@ -12,8 +16,14 @@ public class Category {
      */
     public Category(String name) {
         this.name = name;
+        crafts= new ArrayList<>();
     }
-
+    public void addCraft(Craft craft){
+        crafts.add(craft);
+    }
+    public void deleteCraft(Craft craft){
+        crafts.remove(craft);
+    }
     public String getName() {
         return name;
     }
@@ -22,11 +32,11 @@ public class Category {
         this.name = name;
     }
 
-    public Craft[] getCrafts() {
+    public ArrayList<Craft> getCrafts() {
         return crafts;
     }
 
-    public void setCrafts(Craft[] crafts) {
+    public void setCrafts(ArrayList<Craft> crafts) {
         this.crafts = crafts;
     }
 }

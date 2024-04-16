@@ -1,5 +1,6 @@
 package com.example.group3craftify;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,11 +26,11 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_line_item,parent,false);
-        return new ViewHolder(view);
+        return new CategoryRecyclerAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.lineItem.setText(categories.get(position).getName());
         holder.lineItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +44,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     public int getItemCount() {
         return categories.size();
     }
-    public void setCategoryList(ArrayList<Category> categoryList) {
+    public void setCategories(ArrayList<Category> categories) {
         this.categories = categories;
     }
 
@@ -52,8 +53,6 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             lineItem = itemView.findViewById(R.id.category_line_item);
-
-
         }
     }
 }

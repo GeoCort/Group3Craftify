@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="20dp"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/CraftCardBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        >
+        <TextView
+            android:id="@+id/craftTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Craft Title"
+            android:textColor="@color/offWhite"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/craftDescTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/craftTitleTxt"
+            android:text="lorem ipsum dolori sdnjsdnjshdnb dsjhbnfsbjsdhbfsjhbd"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:lineSpacingExtra="1sp"
+            android:textColor="@color/offWhite"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/craftDescTxt"
+            android:layout_alignEnd="@id/craftTitleTxt"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Join"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
