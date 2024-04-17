@@ -55,7 +55,15 @@ public class MainActivity extends AppCompatActivity {
         myRef.setValue(categoryListDB);
 
         dbAuth = FirebaseAuth.getInstance();
+        // added test code
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
+            startActivity(intent);
 
+            }
+        });
     }
 
     protected void onStart()
