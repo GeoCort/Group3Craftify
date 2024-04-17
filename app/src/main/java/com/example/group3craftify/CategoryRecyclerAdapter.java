@@ -2,12 +2,14 @@ package com.example.group3craftify;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,10 +34,14 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.lineItem.setText(categories.get(position).getName());
-        holder.lineItem.setOnClickListener(new View.OnClickListener() {
+        holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(catContext, "Category : " + categories.get(position).getName(),Toast.LENGTH_SHORT).show();
+                String categoryName = categories.get(position).getName();
+                Toast.makeText(catContext, "Category : " + categoryName,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(catContext, CategoryToCraftsActivity.class);
+                intent.putExtra("keyCategory",categoryName);
+                catContext.startActivity(intent);
             }
         });
     }
@@ -50,9 +56,11 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView lineItem;
+        private RelativeLayout parent;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             lineItem = itemView.findViewById(R.id.category_line_item);
+            parent = itemView.findViewById(R.id.line_item_relative_layout);
         }
     }
 }
