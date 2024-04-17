@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Category {
     String name;
     ArrayList<Craft> crafts;
-
     /**
      * instantiates a craft
      * @param name
@@ -17,6 +16,9 @@ public class Category {
     public Category(String name) {
         this.name = name;
         crafts= new ArrayList<>();
+    }
+    public Category(){
+
     }
     public void addCraft(Craft craft){
         crafts.add(craft);
