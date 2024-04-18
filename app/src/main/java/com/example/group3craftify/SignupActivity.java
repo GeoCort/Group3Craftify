@@ -2,6 +2,7 @@ package com.example.group3craftify;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,13 +36,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         signupName = findViewById(R.id.signup_name);
         signupEmail= findViewById(R.id.signup_email);
@@ -46,27 +45,10 @@ public class SignupActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.signup_button);
         loginRiderectText = findViewById(R.id.loginRiderectText);
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        dbAuth = FirebaseAuth.getInstance();
 
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("Users");
-
-                String name = signupName.getText().toString();
-                String email = signupEmail.getText().toString();
-                String username = signupUsername.getText().toString();
-                String password = signupPassword.getText().toString();
-
-                HelperClass helperClass = new HelperClass(name, email, username, password);
-                reference.child(name).setValue(helperClass);
-
-                dbAuth.createUserWithEmailAndPassword(email,password);
-
-                Toast.makeText(SignupActivity.this, "You have signed up successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+        signupButton.setOnClickListener(view -> {
+            createUser();
         });
 
         loginRiderectText.setOnClickListener(new View.OnClickListener() {
@@ -76,5 +58,56 @@ public class SignupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void createUser()
+    {
+        String name = signupName.getText().toString();
+        String email = signupEmail.getText().toString();
+        String username = signupUsername.getText().toString();
+        String password = signupPassword.getText().toString();
+
+        if (TextUtils.isEmpty(name))
+        {
+            signupName.setError("Name can't be empty!");
+            signupName.requestFocus();
+        }
+
+        else if (TextUtils.isEmpty(email))
+        {
+            signupName.setError("Email can't be empty!");
+            signupName.requestFocus();
+        }
+
+        else if (TextUtils.isEmpty(username))
+        {
+            signupName.setError("Username can't be empty!");
+            signupName.requestFocus();
+        }
+
+        else if (TextUtils.isEmpty(password))
+        {
+            signupName.setError("Password can't be empty!");
+            signupName.requestFocus();
+        }
+
+        else
+        {
+            dbAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task)
+                {
+                    if (task.isSuccessful())
+                    {
+                        Toast.makeText(SignupActivity.this, "Successful Register!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                    }
+                    else
+                    {
+                        Toast.makeText(SignupActivity.this, "Registration error!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
     }
 }
