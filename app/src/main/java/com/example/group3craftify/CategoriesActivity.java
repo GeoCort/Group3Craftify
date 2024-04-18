@@ -1,6 +1,7 @@
 package com.example.group3craftify;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +11,19 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class CategoriesActivity extends AppCompatActivity {
     ArrayList<Category> categoryListDB = new ArrayList<>();
+    DatabaseReference categoryRef;
+    FirebaseDatabase db;
     RecyclerView categoryRecView;
+    CategoryRecyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,25 +34,36 @@ public class CategoriesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        db = FirebaseDatabase.getInstance(); // initialize database from json
+        categoryRef = db.getReference("Meow");
+        categoryRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                categoryListDB.clear();
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    Category c = ds.getValue(Category.class);
+                    categoryListDB.add(new Category(c.getName()) );
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         categoryRecView = findViewById(R.id.categoryRecyclerView); // the xml container for the list
-        CategoryRecyclerAdapter adapter = new CategoryRecyclerAdapter(this); // adapter that tells recycler view how to hold data
-        categoryListDB.add(new Category("Home Development"));
-        categoryListDB.add(new Category("Cooking and Baking"));
-        categoryListDB.add(new Category("Arts and Crafts"));
-        categoryListDB.add(new Category("Health and Fitness"));
-        categoryListDB.add(new Category("Fashion"));
-        categoryListDB.add(new Category("History"));
-        categoryListDB.add(new Category("Electronics"));
-        categoryListDB.add(new Category("Technology and Innovation"));
-        categoryListDB.add(new Category("Gaming"));
-        categoryListDB.add(new Category("Sports"));
-        categoryListDB.add(new Category("Travel and Adventure"));
-        categoryListDB.add(new Category("Academics and Education"));
-        categoryListDB.add(new Category("Politics and Current Events"));
+        adapter = new CategoryRecyclerAdapter(this); // adapter that tells recycler view how to hold data
         adapter.setCategories(categoryListDB);
         categoryRecView.setAdapter(adapter);
         categoryRecView.setLayoutManager(new LinearLayoutManager(this));
 
-
+    }
+    public void populate(DatabaseReference ref, ArrayList<Category>cat){;
+        categoryRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+               for(DataSnapshot ds : dataSnapshot.getChildren()){
+                   Category c = ds.getValue(Category.class);
+                   cat.add(new Category(c.getName()) );
+               }
+            }
+        });
     }
 }
