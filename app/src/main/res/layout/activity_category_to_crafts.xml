@@ -8,12 +8,19 @@
     android:layout_height="match_parent"
     tools:context=".CategoryToCraftsActivity">
     <TextView
-        android:id="@+id/categoriesToCrafts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/upperTabColor"
+        android:background="@color/Gold"
         android:padding="15dp"
         android:text="Category Name"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:id="@+id/categorytitle"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCategoryToCrafts"
+        android:background="@color/offWhite"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

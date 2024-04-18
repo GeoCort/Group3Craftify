@@ -38,7 +38,6 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
             @Override
             public void onClick(View view) {
                 String categoryName = categories.get(position).getName();
-                Toast.makeText(catContext, "Category : " + categoryName,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(catContext, CategoryToCraftsActivity.class);
                 intent.putExtra("keyCategory",categoryName);
                 catContext.startActivity(intent);
