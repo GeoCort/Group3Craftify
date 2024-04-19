@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        loginEmail = findViewById(R.id.login_username);     // Has to change login_username to login_email
+        loginEmail = findViewById(R.id.login_username);
         loginPassword = findViewById(R.id.login_password);
         signUpRedirectText = findViewById(R.id.signUpRiderectText);
         loginButton = findViewById(R.id.login_button);
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful())
                     {
                         Toast.makeText(LoginActivity.this, "Successful login!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     }
                     else
                     {
