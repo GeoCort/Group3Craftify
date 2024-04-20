@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,7 +32,7 @@ public class SignupActivity extends AppCompatActivity {
         Button signupButton;
         FirebaseDatabase database;
         FirebaseAuth dbAuth;
-        DatabaseReference reference;
+        DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.signup_button);
         loginRiderectText = findViewById(R.id.loginRiderectText);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         dbAuth = FirebaseAuth.getInstance();
 
         signupButton.setOnClickListener(view -> {
@@ -58,6 +60,13 @@ public class SignupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void writeNewUser(String userId, String name, String email)
+    {
+        User user = new User(name, email);
+
+        mDatabase.child("Users").child(userId).setValue(user);
     }
 
     private void createUser()
@@ -99,6 +108,8 @@ public class SignupActivity extends AppCompatActivity {
                 {
                     if (task.isSuccessful())
                     {
+                        FirebaseUser user = dbAuth.getCurrentUser();
+                        writeNewUser(user.getUid(), name, email);
                         Toast.makeText(SignupActivity.this, "Successful Register!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                     }
