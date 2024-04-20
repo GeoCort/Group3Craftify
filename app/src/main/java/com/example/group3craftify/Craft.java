@@ -5,88 +5,56 @@ import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class Craft {
-    String creator;
-    String title;
-    String subTitle;
-    String category;
-    int followers;
-    ArrayList<Post> posts;
-    Craft(String title, String subTitle, String category){
-        this.creator = "Admin";
-        posts = new ArrayList<>();
-        this.title = title;
-        this.subTitle = subTitle;
-        this.category = category;
-        this.followers = 0;
-
+    String createdBy;
+    String craftTitle;
+    String craftDesc;
+    String craftID;
+    Craft(){}
+    Craft(String createdBy, String craftTitle, String craftDesc){
+        UUID id = UUID.randomUUID();
+        this.craftID    = id.toString();
+        this.createdBy  = createdBy;
+        this.craftTitle = craftTitle;
+        this.craftDesc  = craftDesc;
+    }
+    Craft(String craftID,String createdBy, String craftTitle, String craftDesc){
+        this.craftID    = craftID;
+        this.createdBy  = createdBy;
+        this.craftTitle = craftTitle;
+        this.craftDesc  = craftDesc;
+    }
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public Craft(String creator, String title, String subTitle, String category) {
-        this.creator = creator;
-        this.title = title;
-        this.subTitle = subTitle;
-        this.category = category;
-        followers = 0;
-    }
-    public String getPath(){
-        return getCategory() + "/" + getTitle() + "/";
-    }
-    public void makePost(String title, String desc){
-        String path = getPath();
-        LocalDateTime dateTime;
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String dateCreated = timestamp.toString();
-
-
-        // New Post(Title Description)
-    }
-    public String getCreator() {
-        return creator;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public void setCreator(String creator) {
-        this.creator = creator;
+    public String getCraftTitle() {
+        return craftTitle;
     }
 
-    public String getTitle() {
-        return title;
+    public void setCraftTitle(String craftTitle) {
+        this.craftTitle = craftTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getCraftDesc() {
+        return craftDesc;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public void setCraftDesc(String craftDesc) {
+        this.craftDesc = craftDesc;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
+    public String getCraftID() {
+        return craftID;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public int getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(int followers) {
-        this.followers = followers;
-    }
-
-    public ArrayList<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
+    public void setCraftID(String craftID) {
+        this.craftID = craftID;
     }
 }
