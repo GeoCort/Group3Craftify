@@ -37,23 +37,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         db = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = db.getReference("Categories");
-        ArrayList<Category> categoryListDB = new ArrayList<>();
-        categoryListDB.add(new Category("Home Development"));
-        categoryListDB.add(new Category("Cooking and Baking"));
-        categoryListDB.add(new Category("Arts and Crafts"));
-        categoryListDB.add(new Category("Health and Fitness"));
-        categoryListDB.add(new Category("Fashion"));
-        categoryListDB.add(new Category("History"));
-        categoryListDB.add(new Category("Electronics"));
-        categoryListDB.add(new Category("Technology and Innovation"));
-        categoryListDB.add(new Category("Gaming"));
-        categoryListDB.add(new Category("Sports"));
-        categoryListDB.add(new Category("Travel and Adventure"));
-        categoryListDB.add(new Category("Academics and Education"));
-        categoryListDB.add(new Category("Politics and Current Events"));
-        myRef.setValue(categoryListDB);
-
         dbAuth = FirebaseAuth.getInstance();
         // added test code
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {

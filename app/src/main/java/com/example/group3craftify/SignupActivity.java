@@ -45,7 +45,6 @@ public class SignupActivity extends AppCompatActivity {
         signupPassword = findViewById(R.id.signup_password);
         signupButton = findViewById(R.id.signup_button);
         loginRiderectText = findViewById(R.id.loginRiderectText);
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
         dbAuth = FirebaseAuth.getInstance();
 
@@ -109,7 +108,8 @@ public class SignupActivity extends AppCompatActivity {
                     if (task.isSuccessful())
                     {
                         FirebaseUser user = dbAuth.getCurrentUser();
-                        writeNewUser(user.getUid(), name, email);
+                        String userId = user.getUid();
+                        writeNewUser(userId, name, email);
                         Toast.makeText(SignupActivity.this, "Successful Register!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                     }

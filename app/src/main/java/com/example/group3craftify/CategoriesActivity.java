@@ -35,7 +35,7 @@ public class CategoriesActivity extends AppCompatActivity {
             return insets;
         });
         db = FirebaseDatabase.getInstance(); // initialize database from json
-        categoryRef = db.getReference("Meow");
+        categoryRef = db.getReference("Categories");
         categoryRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
