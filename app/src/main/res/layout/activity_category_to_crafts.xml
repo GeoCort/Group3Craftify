@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CategoriesActivity">
-
+    tools:context=".CategoryToCraftsActivity">
     <TextView
-        android:id="@+id/categoriesTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/upperTabColor"
+        android:background="@color/Gold"
         android:padding="15dp"
-        android:text="Categories"
+        android:text="Category Name"
         android:textSize="24sp"
+        android:id="@+id/categorytitle"/>
 
-        android:textStyle="bold" />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryRecyclerView"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        android:id="@+id/recyclerCategoryToCrafts"
+        android:background="@color/offWhite"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>
