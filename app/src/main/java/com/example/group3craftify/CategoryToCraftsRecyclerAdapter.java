@@ -41,7 +41,10 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
         holder.goToBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent;
+                intent = new Intent(context, PostsActivity.class);
+                intent.putExtra("craft", title);
+                context.startActivity(intent);
             }
         });
     }
