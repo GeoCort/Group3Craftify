@@ -3,18 +3,13 @@ package com.example.group3craftify;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,76 +19,66 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText loginEmail, loginPassword;
     Button loginButton;
     TextView signUpRedirectText;
-    FirebaseDatabase db = FirebaseDatabase.getInstance();
     FirebaseAuth dbAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        loginEmail = findViewById(R.id.login_username);
+        loginEmail = findViewById(R.id.login_email);
         loginPassword = findViewById(R.id.login_password);
-        signUpRedirectText = findViewById(R.id.signUpRiderectText);
         loginButton = findViewById(R.id.login_button);
-
+        signUpRedirectText = findViewById(R.id.signUpRedirectText);
         dbAuth = FirebaseAuth.getInstance();
 
-        loginButton.setOnClickListener(view -> {
-            loginUser();
-        });
-
-        signUpRedirectText.setOnClickListener(view -> {
-            startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-        });
+        loginButton.setOnClickListener(view -> loginUser());
+        signUpRedirectText.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, SignupActivity.class)));
     }
 
-    private void loginUser()
-    {
-        String email = loginEmail.getText().toString();       // Ask to update to email instead of username
+    private void loginUser() {
+        String email = loginEmail.getText().toString();
         String password = loginPassword.getText().toString();
 
-        if (TextUtils.isEmpty(email))
-        {
-            loginEmail.setError("Email can't be empty!");
-            loginEmail.requestFocus();
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            Toast.makeText(LoginActivity.this, "Email and password cannot be empty!", Toast.LENGTH_LONG).show();
+            return;
         }
 
-        else if (TextUtils.isEmpty(password))
-        {
-            loginPassword.setError("Password can't be empty!");
-            loginPassword.requestFocus();
-        }
+        dbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(dbAuth.getCurrentUser().getUid());
+                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            User user = snapshot.getValue(User.class);
+                            if (user != null) {
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                intent.putExtra("userName", user.username);
+                                intent.putExtra("userEmail", user.email);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
 
-        else
-        {
-            dbAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task)
-                {
-                    if (task.isSuccessful())
-                    {
-                        Toast.makeText(LoginActivity.this, "Successful login!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                    }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this, "Login Error!" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(LoginActivity.this, "Failed to read user data: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(LoginActivity.this, "Login error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
-            });
-        }
+            }
+        });
     }
 }
