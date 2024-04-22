@@ -48,6 +48,7 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
                 intent.putExtra("craft", title);
                 intent.putExtra("craftID", crafts.get(position).getCraftID());
                 intent.putExtra("category", crafts.get(position).getCategory());
+                intent.putExtra("desc", crafts.get(position).getCraftDesc());
                 context.startActivity(intent);
             }
         });

@@ -14,24 +14,26 @@ public class Post {
     String craftName;
     Image image;
     String category;
-
+    String createdBy;
     public Post() {
     }
 
-    public Post(String id, String title, String description, String craftName, String category) {
+    public Post(String id, String title, String description, String craftName, String category, String createdBy) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.craftName = craftName;
+        this.createdBy = createdBy;
         this.category = category;
     }
 
-    public Post(String title, String description, String craftName, String category) {
+    public Post(String title, String description, String craftName, String category, String createdBy) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.craftName = craftName;
         this.category = category;
+        this.createdBy = createdBy;
     }
 
     public String getId() {
@@ -64,6 +66,11 @@ public class Post {
         return craftName;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 }

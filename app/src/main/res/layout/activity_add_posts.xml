@@ -42,14 +42,21 @@
                android:textColor="@color/offWhite"
                android:layout_marginStart="20dp"
                android:layout_marginTop="20dp"/>
+
            <EditText
+               android:id="@+id/addPostTitle"
+               android:focusable="true"
+               android:clickable="true"
+               android:focusableInTouchMode="true"
                android:layout_width="match_parent"
-               android:layout_margin="10dp"
-               android:padding="5dp"
-               android:background="@color/offWhite"
                android:layout_height="wrap_content"
                android:layout_below="@id/postTitletxt"
-               android:id="@+id/addPostDescription"/>
+               android:layout_margin="10dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginBottom="10dp"
+               android:background="@color/offWhite"
+               android:padding="5dp" />
+
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -57,7 +64,7 @@
                android:text="Enter Description"
                android:textSize="22sp"
                android:textColor="@color/offWhite"
-               android:layout_below="@+id/addPostDescription"
+               android:layout_below="@+id/addPostTitle"
                android:layout_marginStart="20dp"
                android:layout_marginTop="20dp"
                />
@@ -65,7 +72,10 @@
            <EditText
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:lines="4"
+               android:lines="5"
+               android:focusable="true"
+               android:clickable="true"
+               android:focusableInTouchMode="true"
                android:id="@+id/addPostDesc"
                android:layout_below="@id/postDesctxt"
                android:layout_margin="10dp"

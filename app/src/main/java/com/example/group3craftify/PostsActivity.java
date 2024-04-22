@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,14 +20,19 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class PostsActivity extends AppCompatActivity {
 String craftRefKey;
-String category;
-Button addPosts;
-FirebaseDatabase db;
-DatabaseReference PostRef;
-FirebaseAuth user;
-User currentUser;
+    TextView postTitle;
+    TextView description;
+    String category;
+    ArrayList<Post> posts = new ArrayList<>();
+    Button addPosts;
+    FirebaseDatabase db;
+    DatabaseReference PostRef;
+    FirebaseAuth user;
+    User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +46,18 @@ User currentUser;
         Intent fromCrafts = getIntent();
         if(fromCrafts != null){
             String craftId = fromCrafts.getStringExtra("craftID");
-            System.out.println("This is the current id" + craftId);
             String craftRefKey = fromCrafts.getStringExtra("craft");
+            String desc = fromCrafts.getStringExtra("desc");
             category = fromCrafts.getStringExtra("category");
             addPosts = findViewById(R.id.addContentPost);
+            postTitle = findViewById(R.id.postActivityTitle);
+            postTitle.setText(craftRefKey);
+            description = findViewById(R.id.postDescTitle);
+            description.setText(desc);
             addPosts.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addPostEvent(PostsActivity.this,craftRefKey,craftId,category);
+                    addPostEvent(PostsActivity.this,craftRefKey,craftId,category,desc);
 
                 }
             });
@@ -55,11 +65,15 @@ User currentUser;
         }
 
     }
-    public void addPostEvent(Context context, String key, String craftId,String category){
+    public void addPostEvent(Context context, String key, String craftId,String category, String desc){
         Intent intent = new Intent(context, AddPostsActivity.class);
         intent.putExtra("key",key);
-        intent.putExtra("craftID",craftId);
+        System.out.println(key);
         intent.putExtra("category",category);
+        intent.putExtra("craftID",craftId);
+        intent.putExtra("desc",desc);
+        intent.putExtra("craft",craftRefKey);
+        System.out.println("craftRefkey is : " + craftRefKey);
         startActivity(intent);
     }
 
