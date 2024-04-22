@@ -55,9 +55,6 @@ EditText desc;
                     intent.putExtra("desc",prevDesc);
                     startActivity(intent);
                 }
-                else{
-                    return;
-                }
             }
         });
     }

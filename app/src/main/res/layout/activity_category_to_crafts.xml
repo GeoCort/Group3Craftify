@@ -12,13 +12,15 @@
         android:layout_height="wrap_content"
         android:background="@color/Gold"
         android:padding="15dp"
+        android:textStyle="bold"
         android:text="Category Name"
+        android:textColor="@color/spaceGray"
         android:textSize="24sp"
         android:id="@+id/categorytitle"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCategoryToCrafts"
-        android:background="@color/offWhite"
+        android:background="@color/spaceGray"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

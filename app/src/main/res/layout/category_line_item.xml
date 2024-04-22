@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="loremipsum"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:id="@+id/category_line_item"/>
 </RelativeLayout>

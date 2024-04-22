@@ -19,10 +19,9 @@
         android:background="@color/Gold"
         android:padding="15dp"
         android:text="Categories"
-        android:textSize="24sp"
+        android:textSize="27sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:gravity="center"
+        android:textColor="@color/spaceGray"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:layout_alignParentTop="true"/>
