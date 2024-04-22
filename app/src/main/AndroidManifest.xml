@@ -17,6 +17,11 @@
 
         <!-- Splash Screen Activity Set as the Initial Activity -->
         <activity
+
+            android:name=".AddPostsActivity"
+            android:exported="false" />
+        <!-- Splash Screen Activity Set as the Initial Activity -->
+        <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">

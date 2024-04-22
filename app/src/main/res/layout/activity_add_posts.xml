@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/mainAddPost"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_blurry"
+    tools:context=".AddPostsActivity">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardElevation="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/spaceGray"
+        app:cardCornerRadius="20dp"
+            >
+       <RelativeLayout
+           android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+           android:padding="10dp">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/addPostTitleMain"
+               android:layout_centerHorizontal="true"
+               android:textSize="32sp"
+               android:text="Add Post"
+               android:textColor="@color/offWhite"
+
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/addPostTitleMain"
+               android:id="@+id/postTitletxt"
+               android:text="Enter Post Title"
+               android:textSize="22sp"
+               android:textColor="@color/offWhite"
+               android:layout_marginStart="20dp"
+               android:layout_marginTop="20dp"/>
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_margin="10dp"
+               android:paddingTop="5dp"
+               android:paddingBottom="5dp"
+               android:background="@color/offWhite"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/postTitletxt"
+               android:id="@+id/addPostDescription"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/postDesctxt"
+               android:text="Enter Description"
+               android:textSize="22sp"
+               android:textColor="@color/offWhite"
+               android:layout_below="@+id/addPostDescription"
+               android:layout_marginStart="20dp"
+               android:layout_marginTop="20dp"
+               />
+
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="100dp"
+               android:id="@+id/addPostDesc"
+               android:layout_below="@id/postDesctxt"
+               android:layout_margin="10dp"
+               android:background="@color/offWhite"
+               android:inputType="textMultiLine"
+               android:paddingTop="5dp"
+               android:paddingBottom="5dp"
+               android:singleLine="false" />
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Add Post"
+               android:layout_below="@id/addPostDesc"
+               android:layout_alignParentEnd="true"
+               android:layout_marginEnd="20dp"/>
+
+       </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>

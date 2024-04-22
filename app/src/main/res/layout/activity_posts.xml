@@ -32,7 +32,7 @@
          android:textSize="24sp"
          />
      <TextView
-         android:layout_width="match_parent"
+         android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_below="@+id/postActivityTitle"
          android:layout_margin="10dp"
@@ -41,6 +41,14 @@
          android:textSize="18sp"
          android:paddingBottom="10dp"
          />
+
+     <Button
+         android:id="@+id/addContentPost"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignRight="@+id/postActivityTitle"
+         android:layout_below="@+id/postActivityTitle"
+         android:text="Add Post" />
  </RelativeLayout>
     </androidx.cardview.widget.CardView>
 <!--    content -->
