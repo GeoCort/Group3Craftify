@@ -22,17 +22,20 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@color/Gold"
-            android:orientation="vertical"
+            android:orientation="vertical">
 
-            >
             <TextView
-                android:id="@+id/textView"
-                android:textAlignment="center"
+                android:id="@+id/welcomeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="50dp"
-                android:text="Welcome @user"
-                android:textSize="40sp" />
+                android:paddingTop="40dp"
+                android:paddingBottom="20dp"
+                android:text="Welcome, @user"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -54,4 +57,5 @@
         android:textSize="18sp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"/>
+
 </LinearLayout>
