@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Group3Craftify"
         tools:targetApi="31">
+
+        <!-- Splash Screen Activity Set as the Initial Activity -->
         <activity
+
             android:name=".AddPostsActivity"
             android:exported="false" />
         <!-- Splash Screen Activity Set as the Initial Activity -->
@@ -24,37 +27,29 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- LoginActivity now receives the MAIN and LAUNCHER intent-filter -->
+        </activity>
+
+        <!-- LoginActivity now receives the MAIN and LAUNCHER intent-filter -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- MainActivity no longer the entry point, just a regular activity now -->
+        </activity>
+
+        <!-- MainActivity no longer the entry point, just a regular activity now -->
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name=".PostsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CategoryToCraftsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SignupActivity"
-            android:exported="true" />
-        <activity
-            android:name=".CategoriesActivity"
-            android:exported="true" />
-    </application>
 
+        <activity android:name=".PostsActivity" android:exported="false" />
+        <activity android:name=".HomeActivity" android:exported="false" />
+        <activity android:name=".CategoryToCraftsActivity" android:exported="false" />
+        <activity android:name=".SignupActivity" android:exported="true" />
+        <activity android:name=".CategoriesActivity" android:exported="true" />
+    </application>
 </manifest>
