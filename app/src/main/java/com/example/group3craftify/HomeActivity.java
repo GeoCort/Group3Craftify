@@ -2,40 +2,37 @@ package com.example.group3craftify;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class HomeActivity extends AppCompatActivity {
 
+    TextView welcomeText;
     Button allCategoriesButton;
-    Button favoritesButton;
-    FirebaseDatabase db = FirebaseDatabase.getInstance();
-    FirebaseAuth dbAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
+        welcomeText = findViewById(R.id.welcomeText);
         allCategoriesButton = findViewById(R.id.home_AllCategories);
-        favoritesButton = findViewById(R.id.home_Favorites);
 
-        dbAuth = FirebaseAuth.getInstance();
+        Intent intent = getIntent();
+        String userName = intent.getStringExtra("userName");
+        String userEmail = intent.getStringExtra("userEmail");
 
-        allCategoriesButton.setOnClickListener(view -> {
-            startActivity(new Intent(HomeActivity.this, CategoriesActivity.class));
-        });
+        welcomeText.setText("Welcome, " + userName + "! Your email is " + userEmail);
 
-        favoritesButton.setOnClickListener(view -> {
+        allCategoriesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start CategoriesActivity when the button is clicked
+                startActivity(new Intent(HomeActivity.this, CategoriesActivity.class));
+            }
         });
     }
 }

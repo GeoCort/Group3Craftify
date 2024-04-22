@@ -4,10 +4,37 @@ import android.media.Image;
 
 public class Post {
 
+    String id;
+
     String title;
+
     String description;
     String category;
     Image image;
+
+    public Post() {
+    }
+
+    public Post(String id, String title, String description, String category) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.category = category;
+    }
+
+    public Post(String title, String description, String category) {
+        this.title = title;
+        this.description = description;
+        this.category = category;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
