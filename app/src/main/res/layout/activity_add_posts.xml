@@ -45,8 +45,7 @@
            <EditText
                android:layout_width="match_parent"
                android:layout_margin="10dp"
-               android:paddingTop="5dp"
-               android:paddingBottom="5dp"
+               android:padding="5dp"
                android:background="@color/offWhite"
                android:layout_height="wrap_content"
                android:layout_below="@id/postTitletxt"
@@ -65,19 +64,20 @@
 
            <EditText
                android:layout_width="match_parent"
-               android:layout_height="100dp"
+               android:layout_height="wrap_content"
+               android:lines="4"
                android:id="@+id/addPostDesc"
                android:layout_below="@id/postDesctxt"
                android:layout_margin="10dp"
                android:background="@color/offWhite"
                android:inputType="textMultiLine"
-               android:paddingTop="5dp"
-               android:paddingBottom="5dp"
+               android:padding="5dp"
                android:singleLine="false" />
            <Button
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Add Post"
+               android:id="@+id/addPostBtn"
                android:layout_below="@id/addPostDesc"
                android:layout_alignParentEnd="true"
                android:layout_marginEnd="20dp"/>

@@ -2,6 +2,8 @@ package com.example.group3craftify;
 
 import android.media.Image;
 
+import java.util.UUID;
+
 public class Post {
 
     String id;
@@ -9,22 +11,26 @@ public class Post {
     String title;
 
     String description;
-    String category;
+    String craftName;
     Image image;
+    String category;
 
     public Post() {
     }
 
-    public Post(String id, String title, String description, String category) {
+    public Post(String id, String title, String description, String craftName, String category) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.craftName = craftName;
         this.category = category;
     }
 
-    public Post(String title, String description, String category) {
+    public Post(String title, String description, String craftName, String category) {
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
+        this.craftName = craftName;
         this.category = category;
     }
 
@@ -54,8 +60,8 @@ public class Post {
     public void setImage() {
         this.image = image;
     }
-    public String getCategory(){
-        return category;
+    public String getCraftName(){
+        return craftName;
     }
 
 

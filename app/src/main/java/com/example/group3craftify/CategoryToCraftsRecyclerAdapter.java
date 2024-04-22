@@ -1,5 +1,6 @@
 package com.example.group3craftify;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -33,9 +34,10 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String title = crafts.get(position).getCraftTitle();
         String subTitle = crafts.get(position).getCraftDesc();
+        String Id = crafts.get(position).getCraftID();
         holder.title.setText(title);
         holder.subTitle.setText(subTitle);
         holder.goToBtn.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +46,8 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
                 Intent intent;
                 intent = new Intent(context, PostsActivity.class);
                 intent.putExtra("craft", title);
+                intent.putExtra("craftID", crafts.get(position).getCraftID());
+                intent.putExtra("category", crafts.get(position).getCategory());
                 context.startActivity(intent);
             }
         });

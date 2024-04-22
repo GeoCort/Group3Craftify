@@ -54,7 +54,7 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
                     crafts.clear();
                     for(DataSnapshot snapshot: dataSnapshot.getChildren() ){
                         Craft c = snapshot.getValue(Craft.class);
-                        crafts.add(new Craft(c.getCraftID(),c.getCreatedBy(),c.getCraftTitle(),c.getCraftDesc()));
+                        crafts.add(new Craft(c.getCraftID(),c.getCreatedBy(),c.getCraftTitle(),c.getCraftDesc(),c.getCategory()));
                     }
                     System.out.println("current crafts are:" + crafts.size());
                     adapter.setCrafts(crafts);

@@ -12,19 +12,22 @@ public class Craft {
     String craftTitle;
     String craftDesc;
     String craftID;
+    String category;
     Craft(){}
-    Craft(String createdBy, String craftTitle, String craftDesc){
+    Craft(String createdBy, String craftTitle, String craftDesc, String category){
         UUID id = UUID.randomUUID();
         this.craftID    = id.toString();
         this.createdBy  = createdBy;
         this.craftTitle = craftTitle;
         this.craftDesc  = craftDesc;
+        this.category = category;
     }
-    Craft(String craftID,String createdBy, String craftTitle, String craftDesc){
+    Craft(String craftID,String createdBy, String craftTitle, String craftDesc, String category){
         this.craftID    = craftID;
         this.createdBy  = createdBy;
         this.craftTitle = craftTitle;
         this.craftDesc  = craftDesc;
+        this.category = category;
     }
     public String getCreatedBy() {
         return createdBy;
@@ -56,5 +59,13 @@ public class Craft {
 
     public void setCraftID(String craftID) {
         this.craftID = craftID;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
