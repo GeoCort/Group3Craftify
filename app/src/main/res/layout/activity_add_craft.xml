@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addCraftmain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_blurry"
+    android:gravity="center"
+    tools:context=".AddCraftActivity">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardElevation="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/spaceGray"
+        app:cardCornerRadius="20dp"
+        >
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addPostTitleMain"
+                android:layout_centerHorizontal="true"
+                android:textSize="32sp"
+                android:text="Create A New Craft"
+                android:textColor="@color/offWhite"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addPostTitleMain"
+                android:id="@+id/craftTitletxt"
+                android:text="Enter Craft Name"
+                android:textSize="22sp"
+                android:textColor="@color/offWhite"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/addCraftTitle"
+                android:focusable="true"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/craftTitletxt"
+                android:hint="Craft Name"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/offWhite"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/craftDesctxt"
+                android:text="Enter Description"
+                android:textSize="22sp"
+                android:textColor="@color/offWhite"
+                android:layout_below="@+id/addCraftTitle"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="5"
+                android:focusable="true"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:id="@+id/addCraftDesc"
+                android:layout_below="@id/craftDesctxt"
+                android:layout_margin="10dp"
+                android:background="@color/offWhite"
+                android:inputType="textMultiLine"
+                android:hint="this craft is about..."
+                android:padding="5dp"
+                android:singleLine="false" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Craft"
+                android:id="@+id/addCraftBtn"
+                android:layout_below="@id/addCraftDesc"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

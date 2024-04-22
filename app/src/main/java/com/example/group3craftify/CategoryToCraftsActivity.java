@@ -2,6 +2,8 @@ package com.example.group3craftify;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
     public TextView categoryTabName;
     private RecyclerView craftsRecyclerView;
     private CategoryToCraftsRecyclerAdapter adapter;
+    ImageButton addCraftBtn;
     ArrayList<Craft> crafts = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +43,18 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
         if(intent != null){
             String name = intent.getStringExtra("keyCategory");
             Toast.makeText(this, "We have loaded in "+ name , Toast.LENGTH_SHORT).show();
-            categoryTabName= findViewById(R.id.categorytitle);
+            categoryTabName= findViewById(R.id.categoryTitle);
             categoryTabName.setText(name);
+            addCraftBtn = findViewById(R.id.btnToAddCraft);
+            addCraftBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(CategoryToCraftsActivity.this, AddCraftActivity.class);
+                    intent.putExtra("keyCategory",name);
+                    startActivity(intent);
+                    adapter.notifyDataSetChanged();
+                }
+            });
             FirebaseDatabase db = FirebaseDatabase.getInstance();
             craftsRecyclerView = findViewById(R.id.recyclerCategoryToCrafts);
             adapter = new CategoryToCraftsRecyclerAdapter(this);

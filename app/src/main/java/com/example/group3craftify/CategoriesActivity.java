@@ -1,7 +1,9 @@
 package com.example.group3craftify;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 public class CategoriesActivity extends AppCompatActivity {
     ArrayList<Category> categoryListDB = new ArrayList<>();
     DatabaseReference categoryRef;
+    ImageButton addCraft;
     FirebaseDatabase db;
     RecyclerView categoryRecView;
     CategoryRecyclerAdapter adapter;
@@ -53,6 +56,7 @@ public class CategoriesActivity extends AppCompatActivity {
         adapter.setCategories(categoryListDB);
         categoryRecView.setAdapter(adapter);
         categoryRecView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
     public void populate(DatabaseReference ref, ArrayList<Category>cat){;
