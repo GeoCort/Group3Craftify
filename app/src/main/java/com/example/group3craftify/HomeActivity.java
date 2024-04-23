@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.Calendar;
+import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +16,8 @@ public class HomeActivity extends AppCompatActivity {
     Button allCategoriesButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -25,7 +28,10 @@ public class HomeActivity extends AppCompatActivity {
         String userName = intent.getStringExtra("userName");
         String userEmail = intent.getStringExtra("userEmail");
 
-        welcomeText.setText("Welcome, " + userName + "! Your email is " + userEmail);
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        welcomeText.setText( getTimeStatement(hour) + userName + "! Your email is " + userEmail);
 
         allCategoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,5 +40,20 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, CategoriesActivity.class));
             }
         });
+    }
+
+    public String getTimeStatement(int hour)
+    {
+        if (hour >= 0 && hour < 12 )
+        {
+            return "Good morning, ";
+        }
+
+        else if (hour >= 12 && hour < 19)
+        {
+            return "Good afternoon, ";
+        }
+
+        return "Good evening, ";
     }
 }
