@@ -50,9 +50,9 @@ public class CategoriesActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-
+        String userID = getIntent().getStringExtra("userID");
         categoryRecView = findViewById(R.id.categoryRecyclerView); // the xml container for the list
-        adapter = new CategoryRecyclerAdapter(this); // adapter that tells recycler view how to hold data
+        adapter = new CategoryRecyclerAdapter(this, userID); // adapter that tells recycler view how to hold data
         adapter.setCategories(categoryListDB);
         categoryRecView.setAdapter(adapter);
         categoryRecView.setLayoutManager(new LinearLayoutManager(this));

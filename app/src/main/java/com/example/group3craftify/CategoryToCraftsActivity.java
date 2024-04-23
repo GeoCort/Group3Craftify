@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -42,6 +45,7 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent != null){
             String name = intent.getStringExtra("keyCategory");
+            String userID = intent.getStringExtra("userID");
             Toast.makeText(this, "We have loaded in "+ name , Toast.LENGTH_SHORT).show();
             categoryTabName= findViewById(R.id.categoryTitle);
             categoryTabName.setText(name);
@@ -51,8 +55,10 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(CategoryToCraftsActivity.this, AddCraftActivity.class);
                     intent.putExtra("keyCategory",name);
+                    intent.putExtra("userID",userID);
                     startActivity(intent);
-                    adapter.notifyDataSetChanged();
+                    crafts = adapter.getCrafts();
+                    intent.putExtra("crafts",crafts);
                 }
             });
             FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -61,17 +67,20 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
             adapter.setCrafts(crafts);
             craftsRecyclerView.setAdapter(adapter);
             craftsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            db.getReference(name).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            db.getReference(name).addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onSuccess(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
                     crafts.clear();
-                    for(DataSnapshot snapshot: dataSnapshot.getChildren() ){
-                        Craft c = snapshot.getValue(Craft.class);
+                    for(DataSnapshot snap: snapshot.getChildren() ){
+                        Craft c = snap.getValue(Craft.class);
                         crafts.add(new Craft(c.getCraftID(),c.getCreatedBy(),c.getCraftTitle(),c.getCraftDesc(),c.getCategory()));
                     }
-                    System.out.println("current crafts are:" + crafts.size());
-                    adapter.setCrafts(crafts);
                     adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
                 }
             });
 

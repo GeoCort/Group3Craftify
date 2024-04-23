@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +58,10 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
     @Override
     public int getItemCount() {
         return crafts.size();
+    }
+
+    public ArrayList<Craft> getCrafts() {
+        return crafts;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

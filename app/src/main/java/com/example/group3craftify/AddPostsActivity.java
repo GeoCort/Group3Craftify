@@ -49,6 +49,8 @@ EditText desc;
                 if(dataVerify()){
                     //setData(craftName,key,v.getContext(), category,craftName);
                     Intent intent = new Intent(AddPostsActivity.this, PostsActivity.class);
+                    finish();
+//                  LOOK HERE
                     intent.putExtra("craftID",key);
                     intent.putExtra("craft",craftName);
                     intent.putExtra("category",category);

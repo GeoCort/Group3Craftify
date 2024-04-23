@@ -19,9 +19,15 @@ import java.util.ArrayList;
 public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder>{
     private ArrayList<Category> categories = new ArrayList<>();
     private Context catContext;
+    String userID;
 
-    public CategoryRecyclerAdapter(Context catContext) {
+    public CategoryRecyclerAdapter(Context catContext, String userID) {
         this.catContext = catContext;
+        if(userID == null){
+            this.userID = "admin";
+        }else{
+            this.userID = userID;
+        }
     }
 
     @NonNull
@@ -29,6 +35,10 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_line_item,parent,false);
         return new CategoryRecyclerAdapter.ViewHolder(view);
+    }
+
+    public ArrayList<Category> getCategories() {
+        return categories;
     }
 
     @Override
@@ -40,6 +50,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
                 String categoryName = categories.get(position).getName();
                 Intent intent = new Intent(catContext, CategoryToCraftsActivity.class);
                 intent.putExtra("keyCategory",categoryName);
+                intent.putExtra("userID",userID);
                 catContext.startActivity(intent);
             }
         });

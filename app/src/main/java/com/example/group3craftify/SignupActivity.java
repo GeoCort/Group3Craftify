@@ -61,12 +61,13 @@ public class SignupActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser user = dbAuth.getCurrentUser();
-                    String userId = user.getUid();
-                    writeNewUser(userId, name, email);
+                    String userID = user.getUid();
+                    writeNewUser(userID, name, email);
 
                     Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
                     intent.putExtra("userName", name);
                     intent.putExtra("userEmail", email);
+                    intent.putExtra("userID",userID); // current user id
                     startActivity(intent);
                     finish();
                 } else {
@@ -77,7 +78,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+        User user = new User(name, email,userId);
         mDatabase.child("Users").child(userId).setValue(user);
     }
 }

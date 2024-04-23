@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String userName = intent.getStringExtra("userName");
         String userEmail = intent.getStringExtra("userEmail");
-
+        String userID = intent.getStringExtra("userID");
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
