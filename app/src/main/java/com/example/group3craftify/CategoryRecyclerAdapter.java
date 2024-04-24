@@ -20,14 +20,16 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     private ArrayList<Category> categories = new ArrayList<>();
     private Context catContext;
     String userID;
+    String userName;
 
-    public CategoryRecyclerAdapter(Context catContext, String userID) {
+    public CategoryRecyclerAdapter(Context catContext, String userID, String userName) {
         this.catContext = catContext;
         if(userID == null){
             this.userID = "admin";
         }else{
             this.userID = userID;
         }
+        this.userName = userName;
     }
 
     @NonNull
@@ -51,6 +53,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
                 Intent intent = new Intent(catContext, CategoryToCraftsActivity.class);
                 intent.putExtra("keyCategory",categoryName);
                 intent.putExtra("userID",userID);
+                intent.putExtra("userName",userName);
                 catContext.startActivity(intent);
             }
         });

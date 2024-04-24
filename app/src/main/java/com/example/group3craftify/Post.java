@@ -73,4 +73,12 @@ public class Post {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

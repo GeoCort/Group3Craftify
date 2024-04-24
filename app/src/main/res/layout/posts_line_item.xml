@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/CraftCardBackground">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="61dp"
-        android:layout_marginBottom="74dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/editTextText3"
-            android:layout_width="234dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="24dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Category"
-            android:textSize="25sp" />
-
-        <EditText
-            android:id="@+id/editTextText2"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:layout_marginBottom="52dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="I have a Question?"
-            android:textColor="@color/Gold"
-            android:textSize="35sp" />
+    android:layout_height="wrap_content"
+    android:id="@+id/clickablePost"
+    android:paddingBottom="20dp"
+    android:layout_marginTop="1dp"
+    android:paddingTop="20dp"
+    android:background="@drawable/textlines"
+    android:orientation="vertical">
 
         <TextView
-            android:id="@+id/editTextText"
-            android:layout_width="770dp"
-            android:layout_height="492dp"
-            android:layout_marginBottom="120dp"
-            android:ems="10"
+            android:id="@+id/postsCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:layout_marginLeft="18dp"
+            android:textColor="#1B1B1B"
             android:inputType="text"
-            android:text="lorem ipsum dolori sdnjsdnjshdnb dsjhbnfsbjsdhbfsjhbd"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:text="Category"
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/postsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:clickable="false"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:scrollHorizontally="false"
+            android:text="posts "
+            android:textColor="#F8F0F0"
+            android:maxEms="24"
+            android:textSize="24sp"
+            android:inputType="textMultiLine"
+            android:maxLines="2"
+            android:textStyle="bold"
+            />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/postsDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:inputType="textMultiLine"
+            android:clickable="false"
+            android:maxLines="3"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="8dp"
+            android:text="lorem ipsum dolor enums albsdf dfb"
+            android:textColor="@color/offWhite"
+            android:textSize="18sp" />
+
+</LinearLayout>

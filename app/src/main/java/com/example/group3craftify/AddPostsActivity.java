@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Firebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -40,6 +41,8 @@ EditText desc;
         String category = getIntent().getStringExtra("category");
         prevDesc = getIntent().getStringExtra("desc");
         prevTitle = getIntent().getStringExtra("craft");
+        String userName = getIntent().getStringExtra("userName");
+        String userID = getIntent().getStringExtra("userID");
         title = findViewById(R.id.addPostTitle);
         desc = findViewById(R.id.addPostDesc);
         addPost = findViewById(R.id.addPostBtn);
@@ -47,22 +50,15 @@ EditText desc;
             @Override
             public void onClick(View v) {
                 if(dataVerify()){
-                    //setData(craftName,key,v.getContext(), category,craftName);
-                    Intent intent = new Intent(AddPostsActivity.this, PostsActivity.class);
+                    setData(craftName,key,v.getContext(), category,craftName, userName);
                     finish();
-//                  LOOK HERE
-                    intent.putExtra("craftID",key);
-                    intent.putExtra("craft",craftName);
-                    intent.putExtra("category",category);
-                    intent.putExtra("desc",prevDesc);
-                    startActivity(intent);
                 }
             }
         });
     }
-    public void setData(String craftRefKey,String id, Context context, String category, String craftName){
+    public void setData(String craftRefKey,String id, Context context, String category, String craftName,String createdBy){
         // get user info somehow
-        Post post = new Post(title.getText().toString(),desc.getText().toString(),craftRefKey,craftName,"admin");
+        Post post = new Post(title.getText().toString(),desc.getText().toString(),craftRefKey,craftName,createdBy);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(category).child(id).child("posts").child(post.getId());
         ref.setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -82,5 +78,9 @@ EditText desc;
             return false;
         }
         return true;
+    }
+    //
+    public void setPosttoUser(Post p, String userID){
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("createdPosts").setValue(p);
     }
 }

@@ -17,10 +17,14 @@ import java.util.ArrayList;
 
 public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<CategoryToCraftsRecyclerAdapter.ViewHolder> {
     ArrayList<Craft> crafts = new ArrayList<>();
+    String userName;
+    String userID;
     Context context;
 
-    public CategoryToCraftsRecyclerAdapter(Context context) {
+    public CategoryToCraftsRecyclerAdapter(Context context,String userID, String userName) {
         this.context = context;
+        this.userID = userID;
+        this.userName = userName;
     }
 
     public void setCrafts(ArrayList<Craft> crafts) {
@@ -50,6 +54,8 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
                 intent.putExtra("craftID", crafts.get(position).getCraftID());
                 intent.putExtra("category", crafts.get(position).getCategory());
                 intent.putExtra("desc", crafts.get(position).getCraftDesc());
+                intent.putExtra("userID",userID);
+                intent.putExtra("userName", userName);
                 context.startActivity(intent);
             }
         });

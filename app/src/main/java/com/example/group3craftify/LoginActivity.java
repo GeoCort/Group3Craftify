@@ -65,6 +65,12 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 intent.putExtra("userName", user.username);
                                 intent.putExtra("userEmail", user.email);
+                                if(user.getUserID() == null) {
+                                    intent.putExtra("userID", snapshot.getKey());
+                                }else{
+                                    intent.putExtra("userID", user.getUserID());
+
+                                }
                                 startActivity(intent);
                                 finish();
                             }

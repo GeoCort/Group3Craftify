@@ -34,6 +34,7 @@ Button btn;
         });
         Intent intent = getIntent();
         String name =  intent.getStringExtra("keyCategory");
+        String userName = intent.getStringExtra("userName");
         titleInput = findViewById(R.id.addCraftTitle);
         descInput = findViewById(R.id.addCraftDesc);
         btn = findViewById(R.id.addCraftBtn);
@@ -44,7 +45,7 @@ Button btn;
                     String title = titleInput.getText().toString();
                     String desc = descInput.getText().toString();
                     String id = intent.getStringExtra("userID");
-                    Craft craft = new Craft(id,title,desc,name);
+                    Craft craft = new Craft(id,userName,title,desc,name);
                     setData(name,craft);
                 }
             }

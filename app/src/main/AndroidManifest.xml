@@ -15,9 +15,11 @@
         android:theme="@style/Theme.Group3Craftify"
         tools:targetApi="31">
         <activity
-            android:name=".AddCraftActivity"
+            android:name=".CurrentPostActivity"
             android:exported="false" />
-        <!-- Splash Screen Activity Set as the Initial Activity -->
+        <activity
+            android:name=".AddCraftActivity"
+            android:exported="false" /> <!-- Splash Screen Activity Set as the Initial Activity -->
         <activity
             android:name=".AddPostsActivity"
             android:exported="false" /> <!-- Splash Screen Activity Set as the Initial Activity -->

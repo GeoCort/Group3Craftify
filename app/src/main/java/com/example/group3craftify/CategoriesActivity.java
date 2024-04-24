@@ -1,8 +1,6 @@
 package com.example.group3craftify;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -32,7 +30,7 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_categories);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.currentPost), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -51,8 +49,9 @@ public class CategoriesActivity extends AppCompatActivity {
             }
         });
         String userID = getIntent().getStringExtra("userID");
+        String userName = getIntent().getStringExtra("userName");
         categoryRecView = findViewById(R.id.categoryRecyclerView); // the xml container for the list
-        adapter = new CategoryRecyclerAdapter(this, userID); // adapter that tells recycler view how to hold data
+        adapter = new CategoryRecyclerAdapter(this, userID,userName); // adapter that tells recycler view how to hold data
         adapter.setCategories(categoryListDB);
         categoryRecView.setAdapter(adapter);
         categoryRecView.setLayoutManager(new LinearLayoutManager(this));

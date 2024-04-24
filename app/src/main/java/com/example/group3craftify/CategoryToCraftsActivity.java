@@ -16,15 +16,12 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class CategoryToCraftsActivity extends AppCompatActivity {
     public TextView categoryTabName;
@@ -37,7 +34,7 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_category_to_crafts);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.currentPost), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -46,7 +43,8 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
         if(intent != null){
             String name = intent.getStringExtra("keyCategory");
             String userID = intent.getStringExtra("userID");
-            Toast.makeText(this, "We have loaded in "+ name , Toast.LENGTH_SHORT).show();
+            String userName = intent.getStringExtra("userName");
+            Toast.makeText(this, "We have loaded in "+ userID , Toast.LENGTH_SHORT).show();
             categoryTabName= findViewById(R.id.categoryTitle);
             categoryTabName.setText(name);
             addCraftBtn = findViewById(R.id.btnToAddCraft);
@@ -56,17 +54,17 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
                     Intent intent = new Intent(CategoryToCraftsActivity.this, AddCraftActivity.class);
                     intent.putExtra("keyCategory",name);
                     intent.putExtra("userID",userID);
+                    intent.putExtra("userName",userName);
                     startActivity(intent);
-                    crafts = adapter.getCrafts();
-                    intent.putExtra("crafts",crafts);
                 }
             });
             FirebaseDatabase db = FirebaseDatabase.getInstance();
             craftsRecyclerView = findViewById(R.id.recyclerCategoryToCrafts);
-            adapter = new CategoryToCraftsRecyclerAdapter(this);
+            adapter = new CategoryToCraftsRecyclerAdapter(this,userID, userName);
             adapter.setCrafts(crafts);
             craftsRecyclerView.setAdapter(adapter);
             craftsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
             db.getReference(name).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/currentPost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/spaceGray"
+    tools:context=".CurrentPostActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin = "12dp"
+        android:background="@drawable/textlines">
+        <TextView
+            android:id="@+id/userNamePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/offWhite"
+            android:text="username"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/currentPostTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineBreakStyle="normal"
+            android:layout_marginTop="10dp"
+            android:text="This is a title"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/offWhite"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:layout_below="@+id/userNamePost"
+            />
+        <TextView
+            android:id="@+id/currentPostDesc"
+            android:layout_below="@id/currentPostTitle"
+            android:textColor="@color/offWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"
+            android:text="Description goes here"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/addComment"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="8dp"
+            android:hint="Share your thoughts..."
+            android:background="@color/darkGray"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addComment"
+            android:id="@+id/addCommentBtn"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/offWhite"
+            android:layout_marginRight="15dp"
+            android:visibility="gone"
+
+            android:text="Add"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_below="@id/addCommentBtn"
+            android:id="@+id/comments"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@color/darkGray"/>
+    </RelativeLayout>
+
+</LinearLayout>

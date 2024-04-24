@@ -37,7 +37,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start CategoriesActivity when the button is clicked
-                startActivity(new Intent(HomeActivity.this, CategoriesActivity.class));
+                Intent intent =new Intent(HomeActivity.this, CategoriesActivity.class);
+                intent.putExtra("userName",userName);
+                intent.putExtra("userID",userID);
+                startActivity(intent);
             }
         });
     }
