@@ -26,6 +26,7 @@ public class PostTest {
         assertEquals(createdBy, post.getCreatedBy());
     }
 
+
     @Test
     public void testConstructorWithoutId() {
         String title = "Title";
