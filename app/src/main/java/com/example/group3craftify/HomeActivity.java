@@ -3,7 +3,9 @@ package com.example.group3craftify;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,6 +26,9 @@ public class HomeActivity extends AppCompatActivity {
         welcomeText = findViewById(R.id.welcomeText);
         allCategoriesButton = findViewById(R.id.home_AllCategories);
 
+        setAllCategoriesButton();
+        setWelcomeText();
+
         Intent intent = getIntent();
         String userName = intent.getStringExtra("userName");
         String userEmail = intent.getStringExtra("userEmail");
@@ -31,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
-        welcomeText.setText( getTimeStatement(hour) + userName + "! Your email is " + userEmail);
+        welcomeText.setText( getTimeStatement(hour) + userName);
 
         allCategoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,5 +63,25 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return "Good evening, ";
+    }
+
+    public void setAllCategoriesButton()
+    {
+        RelativeLayout.LayoutParams btnRelativeLayout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        btnRelativeLayout.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        btnRelativeLayout.topMargin = 1400;
+        btnRelativeLayout.height = 400;
+        btnRelativeLayout.width = 1000;
+        allCategoriesButton.setLayoutParams(btnRelativeLayout);
+    }
+
+    public void setWelcomeText()
+    {
+        RelativeLayout.LayoutParams textRelativeLayout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        textRelativeLayout.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        textRelativeLayout.topMargin = 900;
+        textRelativeLayout.width = 900;
+        textRelativeLayout.height = 300;
+        welcomeText.setLayoutParams(textRelativeLayout);
     }
 }
