@@ -47,20 +47,8 @@ public class Post {
     public String getTitle() {
         return title;
     }
-    public void setTitle(){
-        this.title = title;
-    }
     public String getDescription() {
         return description;
-    }
-    public void setDescription(){
-        this.description = description;
-    }
-    public Image getImage() {
-        return image;
-    }
-    public void setImage() {
-        this.image = image;
     }
     public String getCraftName(){
         return craftName;

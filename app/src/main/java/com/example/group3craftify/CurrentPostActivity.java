@@ -50,10 +50,10 @@ public class CurrentPostActivity extends AppCompatActivity {
             titleView.setText(title);
             descriptionView.setText(description);
         // add a comment ui logic
-            addComment = findViewById(R.id.addComment);
-            if(addComment.isFocused()){
-                findViewById(R.id.addCommentBtn).setVisibility(View.VISIBLE);
-            }
+//            addComment = findViewById(R.id.addComment);
+//            if(addComment.isFocused()){
+//                findViewById(R.id.addCommentBtn).setVisibility(View.VISIBLE);
+//            }
 
         }else{
             finish();
