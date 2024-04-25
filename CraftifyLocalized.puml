@@ -1,0 +1,279 @@
+@startuml
+class com.example.group3craftify.Category {
+~ String name
+~ ArrayList<Craft> crafts
++ void addCraft(Craft)
++ void deleteCraft(Craft)
++ String getName()
++ void setName(String)
++ ArrayList<Craft> getCrafts()
++ void setCrafts(ArrayList<Craft>)
+}
+
+
+class com.example.group3craftify.HomeActivity {
+~ TextView welcomeText
+~ Button allCategoriesButton
+# void onCreate(Bundle)
++ String getTimeStatement(int)
++ void setAllCategoriesButton()
++ void setWelcomeText()
+}
+
+
+class com.example.group3craftify.CategoryToCraftsActivity {
++ TextView categoryTabName
+- RecyclerView craftsRecyclerView
+- CategoryToCraftsRecyclerAdapter adapter
+~ ImageButton addCraftBtn
+~ ArrayList<Craft> crafts
+# void onCreate(Bundle)
+}
+
+
+class com.example.group3craftify.Craft {
+~ String createdBy
+~ String craftTitle
+~ String craftDesc
+~ String craftID
+~ String category
++ String getCreatedBy()
++ void setCreatedBy(String)
++ String getCraftTitle()
++ void setCraftTitle(String)
++ String getCraftDesc()
++ void setCraftDesc(String)
++ String getCraftID()
++ void setCraftID(String)
++ String getCategory()
++ void setCategory(String)
+}
+
+
+class com.example.group3craftify.PostsRecyclerAdapter {
+~ ArrayList<Post> posts
+~ Context context
+~ String userID
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
++ void setPosts(ArrayList<Post>)
+}
+
+
+class com.example.group3craftify.PostsRecyclerAdapter$ViewHolder {
+~ TextView title
+~ TextView desc
+~ TextView categoryName
+~ LinearLayout clickablePost
+}
+
+class com.example.group3craftify.MainActivity {
+~ FirebaseDatabase db
+~ FirebaseAuth dbAuth
+# void onCreate(Bundle)
+# void onStart()
+}
+
+
+class com.example.group3craftify.Post {
+~ String id
+~ String title
+~ String description
+~ String craftName
+~ Image image
+~ String category
+~ String createdBy
++ String getId()
++ void setId(String)
++ String getTitle()
++ void setTitle()
++ String getDescription()
++ void setDescription()
++ Image getImage()
++ void setImage()
++ String getCraftName()
++ String getCreatedBy()
++ void setCreatedBy(String)
++ String getCategory()
++ void setCategory(String)
+}
+
+
+class com.example.group3craftify.CategoryToCraftsRecyclerAdapter {
+~ ArrayList<Craft> crafts
+~ String userName
+~ String userID
+~ Context context
++ void setCrafts(ArrayList<Craft>)
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
++ ArrayList<Craft> getCrafts()
+}
+
+
+class com.example.group3craftify.CategoryToCraftsRecyclerAdapter$ViewHolder {
+- TextView title
+- TextView subTitle
+~ Button goToBtn
+}
+
+class com.example.group3craftify.CurrentPostActivity {
+~ TextView userNameView
+~ TextView titleView
+~ TextView descriptionView
+~ EditText addComment
+~ User user
+# void onCreate(Bundle)
++ void loadUser(String)
+}
+
+
+class com.example.group3craftify.AddPostsActivity {
+~ Button addPost
+~ String prevDesc
+~ String prevTitle
+~ TextView title
+~ EditText desc
+# void onCreate(Bundle)
++ void setData(String,String,Context,String,String,String)
++ boolean dataVerify()
++ void setPosttoUser(Post,String)
+}
+
+
+class com.example.group3craftify.CategoriesActivity {
+~ ArrayList<Category> categoryListDB
+~ DatabaseReference categoryRef
+~ ImageButton addCraft
+~ FirebaseDatabase db
+~ RecyclerView categoryRecView
+~ CategoryRecyclerAdapter adapter
+# void onCreate(Bundle)
++ void populate(DatabaseReference,ArrayList<Category>)
+}
+
+
+class com.example.group3craftify.AddCraftActivity {
+~ EditText titleInput
+~ EditText descInput
+~ Button btn
+# void onCreate(Bundle)
++ void setData(String,Craft)
++ boolean validateData()
+}
+
+
+class com.example.group3craftify.LoginActivity {
+~ EditText loginEmail
+~ Button loginButton
+~ TextView signUpRedirectText
+~ FirebaseAuth dbAuth
+# void onCreate(Bundle)
+- void loginUser()
+}
+
+
+class com.example.group3craftify.SplashScreenActivity {
+- {static} int SPLASH_DISPLAY_LENGTH
+- ProgressBar progressBar
+# void onCreate(Bundle)
+}
+
+
+class com.example.group3craftify.HelperClass {
+~ String name
++ String getName()
++ void setName(String)
++ String getEmail()
++ void setEmail(String)
++ String getUsername()
++ void setUsername(String)
++ String getPassword()
++ void setPassword(String)
+}
+
+
+class com.example.group3craftify.PostsActivity {
+~ String craftRefKey
+~ TextView postTitle
+~ TextView description
+~ String category
+~ RecyclerView recyclerView
+~ ArrayList<Post> posts
+~ Button addPosts
+~ FirebaseDatabase db
+~ PostsRecyclerAdapter adapter
+~ User currentUser
+# void onCreate(Bundle)
++ void addPostEvent(Context,String,String,String,String,String,String)
+}
+
+
+class com.example.group3craftify.CategoryRecyclerAdapter {
+- ArrayList<Category> categories
+- Context catContext
+~ String userID
+~ String userName
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ ArrayList<Category> getCategories()
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
++ void setCategories(ArrayList<Category>)
+}
+
+
+class com.example.group3craftify.CategoryRecyclerAdapter$ViewHolder {
+- TextView lineItem
+- RelativeLayout parent
+}
+
+class com.example.group3craftify.User {
++ String username
++ String email
+~ String userID
++ String getUsername()
++ void setUsername(String)
++ String getEmail()
++ void setEmail(String)
++ String getUserID()
++ void setUserID(String)
+}
+
+
+class com.example.group3craftify.SignupActivity {
+~ EditText signupName
+~ TextView loginRedirectText
+~ Button signupButton
+~ FirebaseAuth dbAuth
+~ DatabaseReference mDatabase
+# void onCreate(Bundle)
+- void createUser()
++ void writeNewUser(String,String,String)
+}
+
+
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.HomeActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.CategoryToCraftsActivity
+com.example.group3craftify.Adapter <|-- com.example.group3craftify.PostsRecyclerAdapter
+com.example.group3craftify.PostsRecyclerAdapter +.. com.example.group3craftify.PostsRecyclerAdapter$ViewHolder
+com.example.group3craftify.ViewHolder <|-- com.example.group3craftify.PostsRecyclerAdapter$ViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.MainActivity
+com.example.group3craftify.Adapter <|-- com.example.group3craftify.CategoryToCraftsRecyclerAdapter
+com.example.group3craftify.CategoryToCraftsRecyclerAdapter +.. com.example.group3craftify.CategoryToCraftsRecyclerAdapter$ViewHolder
+com.example.group3craftify.ViewHolder <|-- com.example.group3craftify.CategoryToCraftsRecyclerAdapter$ViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.CurrentPostActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.AddPostsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.CategoriesActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.AddCraftActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.LoginActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.SplashScreenActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.PostsActivity
+com.example.group3craftify.Adapter <|-- com.example.group3craftify.CategoryRecyclerAdapter
+com.example.group3craftify.CategoryRecyclerAdapter +.. com.example.group3craftify.CategoryRecyclerAdapter$ViewHolder
+com.example.group3craftify.ViewHolder <|-- com.example.group3craftify.CategoryRecyclerAdapter$ViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.group3craftify.SignupActivity
+@enduml
