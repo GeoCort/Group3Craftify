@@ -12,11 +12,19 @@ import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Homepage of Craftify that displays user information and proceed to All Categories
+ */
 public class HomeActivity extends AppCompatActivity {
 
     TextView welcomeText;
     Button allCategoriesButton;
 
+    /**
+     * "Main" method that calls the helper functions and staging area for initializing variables
+     * @author Victor Ly, George Ermakov
+     * @since (4/19) Commit 5d60dd081d012173972cbe65686a5d30a15c6525
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -50,6 +58,12 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Helper function to get the current time
+     * @author Victor Ly
+     * @param hour int
+     * @return String
+     */
     public String getTimeStatement(int hour)
     {
         if (hour >= 0 && hour < 12 )
@@ -65,6 +79,11 @@ public class HomeActivity extends AppCompatActivity {
         return "Good evening, ";
     }
 
+    /**
+     * GUI function that sets the position and dimensions of AllCategories button
+     * @author Victor Ly
+     * @since (4/24) Commit f3a83ebd0af9b8b0aeb9dbdfb336c5527adbad2e
+     */
     public void setAllCategoriesButton()
     {
         RelativeLayout.LayoutParams btnRelativeLayout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -75,6 +94,11 @@ public class HomeActivity extends AppCompatActivity {
         allCategoriesButton.setLayoutParams(btnRelativeLayout);
     }
 
+    /**
+     * GUI function that sets the position and dimensions of WelcomeText
+     * @author Victor Ly
+     * @since (4/24) f3a83ebd0af9b8b0aeb9dbdfb336c5527adbad2e
+     */
     public void setWelcomeText()
     {
         RelativeLayout.LayoutParams textRelativeLayout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

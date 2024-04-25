@@ -21,6 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Login Class signs a user in through Firebase authentication and saves their username throughout the app
+ * @author Victor Ly, George Ermakov
+ * @since (4/17) Commit aeb9a69cd4c157738217f33b2ca5313785a29499
+ */
 public class LoginActivity extends AppCompatActivity {
 
     EditText loginEmail, loginPassword;
@@ -28,6 +33,11 @@ public class LoginActivity extends AppCompatActivity {
     TextView signUpRedirectText;
     FirebaseAuth dbAuth;
 
+    /**
+     * "Main" method that calls the helper functions and staging area for initializing variables
+     * @author Victor Ly, George Ermakov
+     * @since (4/17) Commit aeb9a69cd4c157738217f33b2ca5313785a29499
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +53,11 @@ public class LoginActivity extends AppCompatActivity {
         signUpRedirectText.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, SignupActivity.class)));
     }
 
+    /**
+     * Authenticate a user through Firebase
+     * @author Victor Ly, George Ermakov
+     * @since (4/17) Commit aeb9a69cd4c157738217f33b2ca5313785a29499
+     */
     private void loginUser() {
         String email = loginEmail.getText().toString();
         String password = loginPassword.getText().toString();

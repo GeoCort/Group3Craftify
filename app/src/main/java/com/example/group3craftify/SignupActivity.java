@@ -19,6 +19,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * SignUp Class registers a user and saves their information to Firebase
+ * @author Victor Ly, George Ermakov
+ * @since (4/14) Commit 6ce1d92955442af25ff1ce091e6090f75fb7735f
+ */
 public class SignupActivity extends AppCompatActivity {
 
     EditText signupName, signupEmail, signupUsername, signupPassword;
@@ -27,6 +32,11 @@ public class SignupActivity extends AppCompatActivity {
     FirebaseAuth dbAuth;
     DatabaseReference mDatabase;
 
+    /**
+     * "Main" method that calls the helper functions and staging area for initializing variables
+     * @author Victor Ly, George Ermakov
+     * @since (4/14) Commit 6ce1d92955442af25ff1ce091e6090f75fb7735f
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +55,13 @@ public class SignupActivity extends AppCompatActivity {
         loginRedirectText.setOnClickListener(v -> startActivity(new Intent(SignupActivity.this, LoginActivity.class)));
     }
 
-    private void createUser() {
+    /**
+     * Function creates a user through name, email, user, and password saving it to Firebase
+     * @author Victor Ly, George Ermakov
+     * @since (4/15) Commit 55d7068987120fe66eccdcac7ab27566d33b8fcc
+     */
+    private void createUser()
+    {
         String name = signupName.getText().toString();
         String email = signupEmail.getText().toString();
         String username = signupUsername.getText().toString();
@@ -78,6 +94,14 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Writes the signed up user information to Firebase under Realtime Database
+     * @author Victor Ly
+     * @param userId String
+     * @param name String
+     * @param email String
+     * @since (4/15) Commit 55d7068987120fe66eccdcac7ab27566d33b8fcc
+     */
     public void writeNewUser(String userId, String name, String email) {
         User user = new User(name, email,userId);
         mDatabase.child("Users").child(userId).setValue(user);
