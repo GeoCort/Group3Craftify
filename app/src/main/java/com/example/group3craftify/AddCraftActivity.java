@@ -45,7 +45,7 @@ Button btn;
                     String title = titleInput.getText().toString();
                     String desc = descInput.getText().toString();
                     String id = intent.getStringExtra("userID");
-                    Craft craft = new Craft(id,userName,title,desc,name);
+                    Craft craft = new Craft(userName,title,desc,name);
                     setData(name,craft);
                 }
             }
