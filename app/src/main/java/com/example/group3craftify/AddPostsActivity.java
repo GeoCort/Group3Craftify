@@ -20,22 +20,32 @@ import com.google.firebase.Firebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+// Activity for adding posts to crafts
 public class AddPostsActivity extends AppCompatActivity {
-Button addPost;
-String prevDesc;
-String prevTitle;
-TextView title;
-EditText desc;
+    Button addPost; // Button to add post
+    String prevDesc; // Previous description
+    String prevTitle; // Previous title
+    TextView title; // Text view for post title
+    EditText desc; // Edit text for post description
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Enable edge-to-edge display
         EdgeToEdge.enable(this);
+
+        // Set the layout for this activity
         setContentView(R.layout.activity_add_posts);
+
+        // Apply insets listener for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainAddPost), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Retrieve intent data
         String key = getIntent().getStringExtra("craftID");
         String craftName = getIntent().getStringExtra("key");
         String category = getIntent().getStringExtra("category");
@@ -43,44 +53,58 @@ EditText desc;
         prevTitle = getIntent().getStringExtra("craft");
         String userName = getIntent().getStringExtra("userName");
         String userID = getIntent().getStringExtra("userID");
+
+        // Initialize text view, edit text, and button
         title = findViewById(R.id.addPostTitle);
         desc = findViewById(R.id.addPostDesc);
         addPost = findViewById(R.id.addPostBtn);
+
+        // Set click listener for the button
         addPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Verify data before adding
                 if(dataVerify()){
+                    // Set post data
                     setData(craftName,key,v.getContext(), category,craftName, userName);
+                    // Finish activity
                     finish();
                 }
             }
         });
     }
+
+    // Method to set post data in the database
     public void setData(String craftRefKey,String id, Context context, String category, String craftName,String createdBy){
-        // get user info somehow
+        // Create post object
         Post post = new Post(title.getText().toString(),desc.getText().toString(),craftRefKey,craftName,createdBy);
+
+        // Get database reference
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(category).child(id).child("posts").child(post.getId());
+
+        // Set post data in the database
         ref.setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
+                // Display success message
                 Toast.makeText(context, "This is being added into the db", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    // Method to verify post data
     public boolean dataVerify(){
+        // Check if title is too short
         if(title.getText().toString().length() <= 4){
             title.setError("Title too small");
             return false;
         }
+        // Check if description is too short
         if(desc.getText().toString().length() <= 10){
             desc.setError("Too short of a description add more");
             return false;
         }
+        // Data is valid
         return true;
-    }
-    //
-    public void setPosttoUser(Post p, String userID){
-        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("createdPosts").setValue(p);
     }
 }

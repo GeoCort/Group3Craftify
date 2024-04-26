@@ -49,12 +49,12 @@
             android:text="Description goes here"
             />
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+<!--    <RelativeLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        >-->
 <!--        <EditText-->
-<!--            android:layout_width="300dp"-->
+<!--            android:layout_width="match_parent"-->
 <!--            android:id="@+id/addComment"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_marginStart="10dp"-->
@@ -62,16 +62,18 @@
 <!--            android:padding="8dp"-->
 <!--            android:hint="Share your thoughts..."-->
 <!--            android:background="@color/darkGray"/>-->
-
 <!--        <Button-->
-<!--            android:id="@+id/addCommentBtn"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/addComment"-->
+<!--            android:id="@+id/addCommentBtn"-->
 <!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_marginEnd="15dp"-->
-<!--            android:layout_toRightOf="@+id/addComment"-->
 <!--            android:backgroundTint="@color/offWhite"-->
-<!--            android:text="Add" />-->
+<!--            android:layout_marginRight="15dp"-->
+<!--            android:visibility="gone"-->
+
+<!--            android:text="Add"-->
+<!--            />-->
 <!--        <androidx.recyclerview.widget.RecyclerView-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_below="@id/addCommentBtn"-->
@@ -79,6 +81,6 @@
 <!--            android:layout_height="match_parent"-->
 <!--            android:layout_margin="10dp"-->
 <!--            android:background="@color/darkGray"/>-->
-    </RelativeLayout>
+<!--    </RelativeLayout>-->
 
 </LinearLayout>

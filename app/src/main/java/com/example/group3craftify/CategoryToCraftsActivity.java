@@ -44,6 +44,7 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
             String name = intent.getStringExtra("keyCategory");
             String userID = intent.getStringExtra("userID");
             String userName = intent.getStringExtra("userName");
+            Toast.makeText(this, "We have loaded in "+ userID , Toast.LENGTH_SHORT).show();
             categoryTabName= findViewById(R.id.categoryTitle);
             categoryTabName.setText(name);
             addCraftBtn = findViewById(R.id.btnToAddCraft);

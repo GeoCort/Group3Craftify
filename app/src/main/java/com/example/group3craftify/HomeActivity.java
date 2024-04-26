@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Homepage of Craftify that displays user information and proceed to All Categories
+ * @author Victor Ly, George Ermakov
+ * @since (4/19) Commit 5d60dd081d012173972cbe65686a5d30a15c6525
  */
 public class HomeActivity extends AppCompatActivity {
 
