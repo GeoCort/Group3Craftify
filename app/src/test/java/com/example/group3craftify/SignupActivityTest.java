@@ -8,9 +8,11 @@ import static org.mockito.Mockito.*;
 
 import android.widget.EditText;
 
+import junit.framework.TestCase;
+
 import org.junit.jupiter.api.Test;
 
-class SignupActivityTest
+class SignupActivityTest extends TestCase
 {
     private EditText signupName, signupEmail, signupUsername, signupPassword;
     SignupActivity activity = new SignupActivity();
