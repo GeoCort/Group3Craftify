@@ -26,7 +26,10 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class SignupActivity extends AppCompatActivity {
 
-    EditText signupName, signupEmail, signupUsername, signupPassword;
+    EditText signupName;
+    EditText signupEmail;
+    EditText signupUsername;
+    EditText signupPassword;
     TextView loginRedirectText;
     Button signupButton;
     FirebaseAuth dbAuth;
@@ -60,7 +63,7 @@ public class SignupActivity extends AppCompatActivity {
      * @author Victor Ly, George Ermakov
      * @since (4/15) Commit 55d7068987120fe66eccdcac7ab27566d33b8fcc
      */
-    private void createUser()
+    public void createUser()
     {
         String name = signupName.getText().toString();
         String email = signupEmail.getText().toString();
