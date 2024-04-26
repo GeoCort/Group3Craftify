@@ -23,47 +23,66 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+// Activity for displaying crafts under a specific category
 public class CategoryToCraftsActivity extends AppCompatActivity {
-    public TextView categoryTabName;
-    private RecyclerView craftsRecyclerView;
-    private CategoryToCraftsRecyclerAdapter adapter;
-    ImageButton addCraftBtn;
-    ArrayList<Craft> crafts = new ArrayList<>();
+    public TextView categoryTabName; // TextView for category name
+    private RecyclerView craftsRecyclerView; // RecyclerView for displaying crafts
+    private CategoryToCraftsRecyclerAdapter adapter; // Adapter for the RecyclerView
+    ImageButton addCraftBtn; // Button for adding a craft
+    ArrayList<Craft> crafts = new ArrayList<>(); // List to store crafts
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Enable edge-to-edge display
         EdgeToEdge.enable(this);
+
+        // Set the layout for this activity
         setContentView(R.layout.activity_category_to_crafts);
+
+        // Apply insets listener for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.currentPost), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Retrieve intent data
         Intent intent = getIntent();
-        if(intent != null){
+        if (intent != null) {
             String name = intent.getStringExtra("keyCategory");
             String userID = intent.getStringExtra("userID");
             String userName = intent.getStringExtra("userName");
-            categoryTabName= findViewById(R.id.categoryTitle);
+            // Set category name in TextView
+            categoryTabName = findViewById(R.id.categoryTitle);
             categoryTabName.setText(name);
+
+            // Initialize and set click listener for the addCraftBtn
             addCraftBtn = findViewById(R.id.btnToAddCraft);
             addCraftBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // Start AddCraftActivity
                     Intent intent = new Intent(CategoryToCraftsActivity.this, AddCraftActivity.class);
-                    intent.putExtra("keyCategory",name);
-                    intent.putExtra("userID",userID);
-                    intent.putExtra("userName",userName);
+                    intent.putExtra("keyCategory", name);
+                    intent.putExtra("userID", userID);
+                    intent.putExtra("userName", userName);
                     startActivity(intent);
                 }
             });
+
+            // Initialize Firebase database instance
             FirebaseDatabase db = FirebaseDatabase.getInstance();
+
+            // Initialize RecyclerView and its adapter
             craftsRecyclerView = findViewById(R.id.recyclerCategoryToCrafts);
-            adapter = new CategoryToCraftsRecyclerAdapter(this,userID, userName);
+            adapter = new CategoryToCraftsRecyclerAdapter(this, userID, userName);
             adapter.setCrafts(crafts);
             craftsRecyclerView.setAdapter(adapter);
             craftsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+            // Retrieve crafts from the database
             db.getReference(name).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -77,12 +96,11 @@ public class CategoryToCraftsActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    // Handle database error
                 }
             });
-
-        }else{
-            // should only be on this page from categories
+        } else {
+            // Redirect to MainActivity if intent is null (should only happen when coming from categories)
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
