@@ -63,24 +63,7 @@ public class CurrentPostActivity extends AppCompatActivity {
             descriptionView.setText(description);
 
             // Load user details
-            loadUser(userID);
-        } else {
-            // Finish the activity if intent is null
-            finish();
         }
     }
 
-    // Method to load user details
-    public void loadUser(String userID) {
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        db.getReference("Users").child(userID).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-            @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                User u = dataSnapshot.getValue(User.class);
-                user.setUserID(user.getUsername());
-                user.setEmail(u.getEmail());
-                user.setUserID(userID);
-            }
-        });
-    }
 }
