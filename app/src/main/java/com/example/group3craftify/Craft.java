@@ -1,5 +1,3 @@
-package com.example.group3craftify;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
@@ -7,28 +5,37 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+// Class representing a craft
 public class Craft {
-    String createdBy;
-    String craftTitle;
-    String craftDesc;
-    String craftID;
-    String category;
+    String createdBy; // Creator of the craft
+    String craftTitle; // Title of the craft
+    String craftDesc; // Description of the craft
+    String craftID; // Unique ID of the craft
+    String category; // Category of the craft
+
+    // Default constructor
     Craft(){}
+
+    // Constructor with parameters
     Craft(String createdBy, String craftTitle, String craftDesc, String category){
-        UUID id = UUID.randomUUID();
-        this.craftID    = id.toString();
-        this.createdBy  = createdBy;
-        this.craftTitle = craftTitle;
-        this.craftDesc  = craftDesc;
-        this.category = category;
+        UUID id = UUID.randomUUID(); // Generate a random UUID
+        this.craftID = id.toString(); // Convert UUID to string and assign it as craftID
+        this.createdBy = createdBy; // Assign createdBy
+        this.craftTitle = craftTitle; // Assign craftTitle
+        this.craftDesc = craftDesc; // Assign craftDesc
+        this.category = category; // Assign category
     }
-    Craft(String craftID,String createdBy, String craftTitle, String craftDesc, String category){
-        this.craftID    = craftID;
-        this.createdBy  = createdBy;
-        this.craftTitle = craftTitle;
-        this.craftDesc  = craftDesc;
-        this.category = category;
+
+    // Constructor with parameters including craftID
+    Craft(String craftID, String createdBy, String craftTitle, String craftDesc, String category){
+        this.craftID = craftID; // Assign craftID
+        this.createdBy = createdBy; // Assign createdBy
+        this.craftTitle = craftTitle; // Assign craftTitle
+        this.craftDesc = craftDesc; // Assign craftDesc
+        this.category = category; // Assign category
     }
+
+    // Getters and setters
     public String getCreatedBy() {
         return createdBy;
     }
