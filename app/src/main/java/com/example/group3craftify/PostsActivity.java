@@ -27,6 +27,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * Activity to display posts for a specific craft.
+ * @author
+ * @since
+ */
 public class PostsActivity extends AppCompatActivity {
     String craftRefKey;
     TextView postTitle;
@@ -39,6 +44,12 @@ public class PostsActivity extends AppCompatActivity {
     PostsRecyclerAdapter adapter;
     User currentUser;
 
+    /**
+     * Called when the activity is starting.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down, this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}. Otherwise, it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,10 +80,13 @@ public class PostsActivity extends AppCompatActivity {
             description.setText(desc);
             db = FirebaseDatabase.getInstance();
             addPosts.setOnClickListener(new View.OnClickListener() {
+                /**
+                 * Called when a view has been clicked.
+                 * @param v The view that was clicked.
+                 */
                 @Override
                 public void onClick(View v) {
                     addPostEvent(PostsActivity.this, craftRefKey, craftId, category, desc,userId,userName);
-
                 }
             });
             db.getReference(category).child(craftId).child("posts").addValueEventListener(new ValueEventListener() {
@@ -86,6 +100,10 @@ public class PostsActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 }
 
+                /**
+                 * This method will be invoked if the request is cancelled.
+                 * @param error A description of the error that occurred.
+                 */
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(PostsActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
@@ -96,6 +114,16 @@ public class PostsActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Method to initiate adding a new post.
+     * @param context The context from which the method is called.
+     * @param key The key associated with the craft.
+     * @param craftId The ID of the craft.
+     * @param category The category of the craft.
+     * @param desc The description of the craft.
+     * @param userID The ID of the user.
+     * @param userName The name of the user.
+     */
     public void addPostEvent(Context context, String key, String craftId, String category, String desc,String userID, String userName) {
         Intent intent = new Intent(context, AddPostsActivity.class);
         intent.putExtra("key", key);
