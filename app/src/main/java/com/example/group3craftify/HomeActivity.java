@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
      * Helper function to get the current time
      * @author Victor Ly
      * @param hour int
+     * @since (4/22) Commit ab365b07329e516398505b0965ec4564ffd70858
      * @return String
      */
     public String getTimeStatement(int hour)
