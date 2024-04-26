@@ -7,9 +7,10 @@ import android.widget.ProgressBar;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+
+import java.lang.reflect.Field;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -25,18 +26,13 @@ public class SplashScreenActivityTest extends TestCase {
     @Mock
     private Handler mockHandler;
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        mockLogoImageView = Mockito.mock(ImageView.class);
-        mockProgressBar = Mockito.mock(ProgressBar.class);
-        mockHandler = Mockito.mock(Handler.class);
-    }
-
-    @Test
-    public void testSplashScreenBehavior() {
+    public void testSplashScreenBehavior() throws NoSuchFieldException, IllegalAccessException {
         SplashScreenActivity splashScreenActivity = Mockito.spy(new SplashScreenActivity());
-        splashScreenActivity.progressBar = mockProgressBar;
+
+        // Access progressBar field using reflection
+        Field progressBarField = SplashScreenActivity.class.getDeclaredField("progressBar");
+        progressBarField.setAccessible(true);
+        progressBarField.set(splashScreenActivity, mockProgressBar);
 
         // Mock findViewById
         when(splashScreenActivity.findViewById(R.id.imageViewLogo)).thenReturn(mockLogoImageView);
@@ -44,7 +40,6 @@ public class SplashScreenActivityTest extends TestCase {
 
         // Mock SPLASH_DISPLAY_LENGTH
         int mockSplashDisplayLength = 3000;
-        splashScreenActivity.SPLASH_DISPLAY_LENGTH = mockSplashDisplayLength;
 
         // Mock Handler.postDelayed()
         Runnable mockRunnable = Mockito.mock(Runnable.class);
