@@ -13,11 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+
 /**
  * Adapter class for a Recycler View
  * @author George Cortes
  */
-// Adapter for RecyclerView to display crafts under a specific category
 public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<CategoryToCraftsRecyclerAdapter.ViewHolder> {
     ArrayList<Craft> crafts = new ArrayList<>(); // List of crafts
     String userName; // User name

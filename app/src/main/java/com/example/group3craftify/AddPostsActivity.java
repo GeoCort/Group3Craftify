@@ -108,7 +108,6 @@ public class AddPostsActivity extends AppCompatActivity {
         ref.setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                // Display success message
                 Toast.makeText(context, "This is being added into the db", Toast.LENGTH_SHORT).show();
             }
         });

@@ -43,7 +43,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
      *               an adapter position.
      * @param viewType The view type of the new View.
      *
-     * @return
+     * @return ViewHolder
      */
     @NonNull
     @Override
@@ -88,7 +88,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
 
     /**
      * returns size of categories list
-      * @return categories size
+     * @return categories size
      */
     @Override
     public int getItemCount() {
