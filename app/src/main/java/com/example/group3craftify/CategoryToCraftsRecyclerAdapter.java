@@ -21,7 +21,12 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
     String userID; // User ID
     Context context; // Context of the adapter
 
-    // Constructor
+    /**
+     *  * Instantiates an adapter for the CategoryToCraftsRecycler adapter
+     * @param context context where line items will be displayed
+     * @param userID The current user's ID
+     * @param userName The current user's username
+     */
     public CategoryToCraftsRecyclerAdapter(Context context,String userID, String userName) {
         this.context = context;
         this.userID = userID;
@@ -29,11 +34,25 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
     }
 
     // Set crafts
+
+    /**
+     * Sets crafts to crafts
+     * @param crafts Arraylist of type Craft
+     */
     public void setCrafts(ArrayList<Craft> crafts) {
         this.crafts = crafts;
     }
 
     // Create ViewHolder
+
+    /**
+     *
+     * @param parent The ViewGroup into which the new View will be added after it is bound to
+     *               an adapter position.
+     * @param viewType The view type of the new View.
+     *
+     * @return ViewHolder class object to manipulate in OnBindViewHolder
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,6 +62,13 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
     }
 
     // Bind data to ViewHolder
+
+    /**
+     * Tracks current focused location and sets text to line items
+     * @param holder The ViewHolder which should be updated to represent the contents of the
+     *        item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // Get craft details
@@ -71,24 +97,32 @@ public class CategoryToCraftsRecyclerAdapter extends RecyclerView.Adapter<Catego
         });
     }
 
-    // Get item count
+    /**
+     * Returns crafts Size
+     * Is used to determine if adapter should populate
+     * @return craftsSize
+     */
     @Override
     public int getItemCount() {
         return crafts.size();
     }
 
-    // Get crafts
+    /**
+     * gets the craft list
+     * @return crafts an arraylist of type Craft
+     */
     public ArrayList<Craft> getCrafts() {
         return crafts;
     }
 
-    // ViewHolder class
+    /**
+     * Holds Views for given line items
+     * instantiates line items from a given layout
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title; // TextView for craft title
         private TextView subTitle; // TextView for craft description
         Button goToBtn; // Button to navigate to craft posts
-
-        // Constructor
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // Initialize views
