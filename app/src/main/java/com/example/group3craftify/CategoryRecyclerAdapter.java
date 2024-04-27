@@ -20,7 +20,12 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     String userID; // User ID
     String userName; // User name
 
-    // Constructor
+    /**
+     * Instantiates a Recycler View adapter
+     * @param catContext Context that will hold this list item
+     * @param userID User Id of a given user to utilize data
+     * @param userName Username of a current user
+     */
     public CategoryRecyclerAdapter(Context catContext, String userID, String userName) {
         this.catContext = catContext;
         // If userID is null, set it as "admin"
@@ -32,7 +37,14 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
         this.userName = userName;
     }
 
-    // Create ViewHolder
+    /**
+     *
+     * @param parent The ViewGroup into which the new View will be added after it is bound to
+     *               an adapter position.
+     * @param viewType The view type of the new View.
+     *
+     * @return
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,12 +53,20 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
         return new ViewHolder(view);
     }
 
-    // Get categories
+    /**
+     * Retrieves an ArrayList of type Category
+     * @return ArrayList of categories
+     */
     public ArrayList<Category> getCategories() {
         return categories;
     }
 
-    // Bind data to ViewHolder
+    /**
+     *
+     * @param holder The ViewHolder which should be updated to represent the contents of the
+     *        item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // Set category name
@@ -66,18 +86,26 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
         });
     }
 
-    // Get item count
+    /**
+     * returns size of categories list
+      * @return categories size
+     */
     @Override
     public int getItemCount() {
         return categories.size();
     }
 
-    // Set categories
+    /**
+     * Sets the adapters list to categories
+     * @param categories
+     */
     public void setCategories(ArrayList<Category> categories) {
         this.categories = categories;
     }
 
-    // ViewHolder class
+    /**
+     * Viewholder holds views of the UI elements
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView lineItem; // TextView for category name
         private RelativeLayout parent; // Parent layout
