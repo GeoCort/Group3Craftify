@@ -19,11 +19,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 // Activity for adding a craft
+/**
+ * Activity for creating and adding a craft
+ * @author George Cortes
+ * @since 4/22
+ */
 public class AddCraftActivity extends AppCompatActivity {
     EditText titleInput; // Input field for craft title
     EditText descInput; // Input field for craft description
     Button btn; // Button for adding craft
-
+    /**
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +84,12 @@ public class AddCraftActivity extends AppCompatActivity {
     }
 
     // Method to set craft data in the database
+
+    /**
+     * Saves a craft into the database
+     * @param name The category name
+     * @param obj Craft object created in OnCreate
+     */
     public void setData(String name, Craft obj){
         // Get user info somehow
 
@@ -93,6 +110,12 @@ public class AddCraftActivity extends AppCompatActivity {
     }
 
     // Method to validate input data
+    /**
+     * Ensures that data is not too small
+     * Title larger than 4 characters
+     * Description larger than 10 characters
+     * @return boolean if minimum specifications met
+     */
     public boolean validateData(){
         // Check if title is too short
         if(titleInput.getText().toString().length() < 2){

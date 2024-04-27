@@ -29,8 +29,8 @@ import java.util.ArrayList;
 
 /**
  * Activity to display posts for a specific craft.
- * @author
- * @since
+ * @author George Cortes, Juan Sanchez
+ * @since 4/22
  */
 public class PostsActivity extends AppCompatActivity {
     String craftRefKey;

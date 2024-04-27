@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 /**
- * @author
- * @since
+ * Adapter class for a Recycler View
+ * @author George Cortes
+ * @since 4/22
  */
 public class PostsRecyclerAdapter extends RecyclerView.Adapter<PostsRecyclerAdapter.ViewHolder>{
     ArrayList<Post> posts = new ArrayList<>();
@@ -32,7 +33,7 @@ public class PostsRecyclerAdapter extends RecyclerView.Adapter<PostsRecyclerAdap
      *               an adapter position.
      * @param viewType The view type of the new View.
      *
-     * @return
+     * @return ViewHolder class that will be used in ViewBinder
      */
     @NonNull
     @Override

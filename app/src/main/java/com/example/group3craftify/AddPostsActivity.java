@@ -21,6 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 // Activity for adding posts to crafts
+/**
+ * Add a Post to DB Activity
+ * @author George Cortes
+ * @since 4/22
+ */
 public class AddPostsActivity extends AppCompatActivity {
     Button addPost; // Button to add post
     String prevDesc; // Previous description
@@ -28,6 +33,13 @@ public class AddPostsActivity extends AppCompatActivity {
     TextView title; // Text view for post title
     EditText desc; // Edit text for post description
 
+    /**
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +87,16 @@ public class AddPostsActivity extends AppCompatActivity {
     }
 
     // Method to set post data in the database
+
+    /**
+     * Saves a Post object to the database
+     * @param craftRefKey The name of the Post
+     * @param id The Post ID
+     * @param context The current context this is displayed in
+     * @param category The category of the post
+     * @param craftName The name of the parent Craft
+     * @param createdBy The username of the creator
+     */
     public void setData(String craftRefKey,String id, Context context, String category, String craftName,String createdBy){
         // Create post object
         Post post = new Post(title.getText().toString(),desc.getText().toString(),craftRefKey,craftName,createdBy);
@@ -92,7 +114,12 @@ public class AddPostsActivity extends AppCompatActivity {
         });
     }
 
-    // Method to verify post data
+    /**
+     * Ensures that data is not too small
+     * Title larger than 4 characters
+     * Description larger than 10 characters
+     * @return boolean if minimum specifications met
+     */
     public boolean dataVerify(){
         // Check if title is too short
         if(title.getText().toString().length() <= 4){

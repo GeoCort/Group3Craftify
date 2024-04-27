@@ -19,6 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 // Activity for displaying categories
+/**
+ * Activity to display Categories
+ * @author George Cortes
+ * @since 4/22
+ */
 public class CategoriesActivity extends AppCompatActivity {
     ArrayList<Category> categoryListDB = new ArrayList<>(); // List to store categories from the database
     DatabaseReference categoryRef; // Reference to the 'Categories' node in the database
